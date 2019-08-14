@@ -40,7 +40,7 @@ function update(changes, id) {
     return db('schemes').where({ id }).update(changes);
 }
 
-function remove() {
-    return db() 
+function remove(id) {
+    return db('schemes').where({ id }).del(); 
 }
 
