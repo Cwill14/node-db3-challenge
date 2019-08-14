@@ -29,16 +29,15 @@ function findSteps(id) {
         .select('st.id', 'st.step_number', 'st.instructions', 'sc.scheme_name')
         .where('sc.id', '=', id)
         .orderBy('st.step_number')
-        // .where({ sc.id: id })
-        
+        // .where({ sc.id: id })       
 }
 
-function add() {
-    return db() 
+function add(scheme) {
+    return db('schemes').insert(scheme) 
 }
 
-function update() {
-    return db() 
+function update(changes, id) {
+    return db('schemes').where({ id }).update(changes);
 }
 
 function remove() {
