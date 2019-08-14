@@ -52,7 +52,8 @@ router.post('/', async (req, res) => {
 
   try {
     const scheme = await Schemes.add(schemeData);
-    res.status(201).json(scheme);
+    const newScheme = { id: scheme[0], ...schemeData }
+    res.status(201).json(newScheme);
   } catch (err) {
     res.status(500).json({ message: 'Failed to create new scheme' });
   }
