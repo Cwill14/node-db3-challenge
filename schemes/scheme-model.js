@@ -17,8 +17,20 @@ function findById(id) {
     return db('schemes').where({ id }); 
 }
 
-function findSteps() {
-    return db() 
+function findSteps(id) {
+    /*
+    select st.id, st.step_number, st.instructions, sc.scheme_name 
+    from steps as st 
+    join schemes as sc 
+    on st.scheme_id = sc.id;
+    */
+    return db('steps as st')
+        .innerJoin('schemes as sc', 'st.scheme_id', '=', 'sc.id')
+        .select('st.id', 'st.step_number', 'st.instructions', 'sc.scheme_name')
+        .where('sc.id', '=', id)
+        .orderBy('st.step_number')
+        // .where({ sc.id: id })
+        
 }
 
 function add() {
