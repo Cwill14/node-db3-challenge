@@ -86,7 +86,10 @@ router.put('/:id', async (req, res) => {
 
     if (scheme) {
       const updatedScheme = await Schemes.update(changes, id);
-      res.json(updatedScheme);
+      // console.log(updatedScheme);
+      const returnedScheme = { id: id, ...changes }
+      res.json(returnedScheme);
+      
     } else {
       res.status(404).json({ message: 'Could not find scheme with given id' });
     }
